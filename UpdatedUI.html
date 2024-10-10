@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom YouTube Video Player</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        iframe {
+            width: 80%;
+            height: 450px;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+        #inputForm {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Watch YouTube Videos</h1>
+
+    <!-- Input field for the YouTube video URL -->
+    <div id="inputForm">
+        <label for="youtubeUrl">Paste YouTube Video URL:</label>
+        <input type="text" id="youtubeUrl" placeholder="Enter YouTube Video URL">
+        <button onclick="updateVideo()">Load Video</button>
+    </div>
+
+    <!-- YouTube Video Embed -->
+    <iframe 
+        id="youtubePlayer"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allow="autoplay" 
+        allowfullscreen>
+    </iframe>
+
+    <script>
+        function updateVideo() {
+            const urlInput = document.getElementById('youtubeUrl').value;
+
+            // Updated Regex to match YouTube video ID from various link formats (regular, live, short)
+            const videoIdMatch = urlInput.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|live\/|shorts\/)|youtu\.be\/)([^\s&?]+)/);
+
+            // If a valid video ID is found, update the iframe source
+            if (videoIdMatch && videoIdMatch[1]) {
+                const videoId = videoIdMatch[1];
+                const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                document.getElementById('youtubePlayer').src = embedUrl;
+            } else {
+                alert("Invalid YouTube URL! Please enter a valid YouTube video link.");
+            }
+        }
+    </script>
+
+</body>
+</html>
