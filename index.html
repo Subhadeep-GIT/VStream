@@ -4,43 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom YouTube Video Player</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        iframe {
-            width: 80%;
-            height: 450px;
-            max-width: 800px;
-            margin-top: 20px;
-        }
-        #inputForm {
-            margin-bottom: 20px;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
 
-    <h1>Watch YouTube Videos</h1>
+    <div class="container mx-auto text-center py-8 px-4">
+        <h1 class="text-3xl font-semibold mb-6">Watch YouTube Videos</h1>
 
-    <!-- Input field for the YouTube video URL -->
-    <div id="inputForm">
-        <label for="youtubeUrl">Paste YouTube Video URL:</label>
-        <input type="text" id="youtubeUrl" placeholder="Enter YouTube Video URL">
-        <button onclick="updateVideo()">Load Video</button>
+        <!-- Input field for the YouTube video URL -->
+        <div id="inputForm" class="mb-6">
+            <label for="youtubeUrl" class="block text-lg mb-2">Paste YouTube Video URL:</label>
+            <div class="flex flex-col sm:flex-row items-center justify-center">
+                <input 
+                    type="text" 
+                    id="youtubeUrl" 
+                    class="p-2 w-full sm:w-2/3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 sm:mb-0 sm:mr-4" 
+                    placeholder="Enter YouTube Video URL">
+                <button 
+                    onclick="updateVideo()" 
+                    class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition-colors">
+                    Load Video
+                </button>
+            </div>
+        </div>
+
+        <!-- YouTube Video Embed -->
+        <div class="relative w-full h-0 pb-56 sm:pb-96 max-w-3xl mx-auto">
+            <iframe 
+                id="youtubePlayer"
+                class="absolute top-0 left-0 w-full h-full" 
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allow="autoplay" 
+                allowfullscreen>
+            </iframe>
+        </div>
     </div>
-
-    <!-- YouTube Video Embed -->
-    <iframe 
-        id="youtubePlayer"
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allow="autoplay" 
-        allowfullscreen>
-    </iframe>
 
     <script>
         function updateVideo() {
